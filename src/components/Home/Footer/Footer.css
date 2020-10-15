@@ -1,0 +1,11 @@
+.footer-container{
+    background-color:#FBD062;
+
+}
+form input,form textarea{
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom:30px;
+    padding:10px;
+    border:none;
+}

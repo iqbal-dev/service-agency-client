@@ -1,0 +1,13 @@
+.header-contain{
+    background-color:#FBD062;
+    height: 685px;
+    position: relative;
+}
+.header-contain::before{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-bottom: 200px solid white;
+    border-left: 1600px solid  #FBD062;
+}

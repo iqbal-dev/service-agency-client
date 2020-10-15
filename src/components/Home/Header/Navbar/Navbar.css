@@ -1,0 +1,13 @@
+ul li a{
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.5s;
+}
+ul li a:hover{
+    color: white !important;
+    margin-left:20px;
+    background-color:#111430;
+    border-radius: 3px;
+}
