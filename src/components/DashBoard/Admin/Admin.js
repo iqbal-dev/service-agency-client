@@ -59,7 +59,7 @@ const Admin = () => {
             <div className="collapse navbar-collapse" id="navbarText">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active ">
-                        <Link className="nav-link" href="#">Order<span className="sr-only">(current)</span></Link>
+                        <Link className="nav-link" href="#">Admin<span className="sr-only">(current)</span></Link>
                     </li>
                 </ul>
                     <span className="navbar-text mr-5">{user.name}</span>
