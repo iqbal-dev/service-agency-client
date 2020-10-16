@@ -15,10 +15,11 @@ const Admin = () => {
         fetch('https://infinite-fjord-10812.herokuapp.com/allUser')
         .then(res => res.json())
           .then(data => {
-              console.log(data)
               setServiceList(data);
         })
-      },[serviceList.length])
+      },[])
+
+    // which one is display service,add service or add admin
     const [adminPanel, setAdminPanel] = useState({
         services: true,
         addServices:false,
@@ -47,6 +48,9 @@ const Admin = () => {
         })}
     return (
         <div style={{ marginLeft: '50px' }}>
+
+            {/* header portion */}
+
             <nav className="navbar navbar-expand-lg navbar-light mt-4">
             <Link className="navbar-brand" to="/home"><img className="img-fluid" style={{height:'50px'}} src={require('../../../images/logos/logo.png')} alt=""/></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,6 +65,9 @@ const Admin = () => {
                     <span className="navbar-text mr-5">{user.name}</span>
             </div>
             </nav>
+
+            {/* sidebar */}
+
         <div className="row " style={{margin:'0 auto'}}>
             <div className="col-md-2">
                 <ul>
@@ -68,7 +75,10 @@ const Admin = () => {
                     <Link onClick={addService}><><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Add service</></Link>
                     <Link onClick={addAdmin}><li><FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Add Admin</li></Link>
                 </ul>
-            </div>
+                </div>
+
+                {/* main section */}
+
                 <div className="col-md-10 p-0">
                     <div style={{width:'100%',background:'#F4F7FC',}}>
                         {

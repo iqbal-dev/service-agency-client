@@ -5,8 +5,9 @@ import Customer from '../Customer/Customer';
 
 const DashBoard = () => {
     const [user, setUser] = useContext(UserContext);
-    const[admin, setAdmin] = useState({
-    });
+    const [admin, setAdmin] = useState({});
+    
+    
     fetch('https://infinite-fjord-10812.herokuapp.com/admin', {
         method: 'POST',
         headers: {

@@ -7,9 +7,10 @@ const Order = () => {
     const history = useHistory();
     const [user, setUser] = useContext(UserContext);
 
+
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        const customerDetails = { ...user, message: data.message }
+        const customerDetails = { ...user, message: data.message, status:'pending' }
         fetch('https://infinite-fjord-10812.herokuapp.com/customerDetails', {
             method: 'POST',
             headers: {
@@ -19,12 +20,13 @@ const Order = () => {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result)
                 if (result) {
                 alert('order success');
             }
         })
     };
+
+
     const handleButton = () => {
         history.push('/dashboard')
     }

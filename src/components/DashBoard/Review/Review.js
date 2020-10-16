@@ -5,6 +5,9 @@ import { UserContext } from '../../../App';
 const Review = () => {
     const [user, setUser] = useContext(UserContext);
     const { register, handleSubmit, watch, errors } = useForm();
+
+
+
     const onSubmit = data => {
         const commentsDetails = {
             name: user.name,
@@ -26,6 +29,9 @@ const Review = () => {
                 }
             });
     };
+
+
+    
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} style={{ width: '50%', marginLeft: '50px', paddingTop: '50px' }}>

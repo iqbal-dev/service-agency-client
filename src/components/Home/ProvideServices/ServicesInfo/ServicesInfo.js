@@ -5,18 +5,18 @@ import './ServiceInfo.css'
 
 const ServicesInfo = ({ service }) => {
     const history = useHistory();
-    const[user,setUser] = useContext(UserContext);
+    const [user, setUser] = useContext(UserContext);
+    
+
     const handleCourse = (id,title,description,courseImg) => {
-        // history.push('/dashboard')
         const newUser = {
             id: id,
             title: title,
             description: description,
-            courseImg: courseImg
+            courseImg: courseImg,
         }
         setUser(newUser)
     }
-    console.log(user)
     return (
         <div className="col-md-4">
                 <div className="service-container" >
@@ -29,6 +29,8 @@ const ServicesInfo = ({ service }) => {
                         
                         
                     </div>
+
+
                     <div style={{textAlign:'center',fontFamily:'poppins',margin:'20px 0'}}>
                         <h5>{service.title}</h5>
                         <small>{service.description}</small>

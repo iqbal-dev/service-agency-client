@@ -17,6 +17,8 @@ const Customer = () => {
         serviceList: false,
         review: false,
     })
+
+
     const order = () => {
         setCustomer({
             makeOrder: true,
@@ -40,6 +42,7 @@ const Customer = () => {
     }
  
     return (
+        // header portion
         <div style={{ marginLeft: '50px' }}>
             <nav className="navbar navbar-expand-lg navbar-light mt-4">
             <Link className="navbar-brand" to="/home"><img className="img-fluid" style={{height:'50px'}} src={require('../../../images/logos/logo.png')} alt=""/></Link>
@@ -55,6 +58,9 @@ const Customer = () => {
                     <span className="navbar-text mr-5">{user.name}</span>
             </div>
             </nav>
+
+            {/* sidebar */}
+
         <div className="row " style={{margin:'0 auto'}}>
             <div className="col-md-2">
                 <ul>
@@ -62,7 +68,10 @@ const Customer = () => {
                     <Link  onClick={serviceList}><li><FontAwesomeIcon icon={faList}></FontAwesomeIcon> Service List</li></Link>
                     <Link  onClick={review}><li><FontAwesomeIcon icon={faCommentDots}></FontAwesomeIcon> Review</li></Link>
                 </ul>
-            </div>
+                </div>
+
+                {/* main part */}
+                
                 <div className="col-md-10 p-0">
                     <div style={{background:'#F4F7FC'}}>
                     {

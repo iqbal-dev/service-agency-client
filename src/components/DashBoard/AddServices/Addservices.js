@@ -27,6 +27,8 @@ const Addservices = () => {
     };
     return (
                     <form className="row" onSubmit={handleSubmit(onSubmit)} style={{ width: '80%', marginLeft: '50px', paddingTop: '50px' }}>
+                        
+                        {/* add service form */}
                         <div className="col-md-6 bg-white p-3">
                             <div className="">
                                 <input type="text" name="title"style={{border: '1px solid lightgray',}} placeholder="title" ref={register({ required: true })} />
@@ -35,7 +37,7 @@ const Addservices = () => {
                                 {errors.exampleRequired && <span>This field is required</span>}
                             </div>
                         </div>
-                        
+                        {/* add service image upload */}
                         <div className="col-md-6 bg-white">
                                     <div>
                                         <label for="img">Select image:</label>

@@ -1,29 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import customer1 from '../../../../images/customer-1.png';
-import customer2 from '../../../../images/customer-2.png';
-import customer3 from '../../../../images/customer-3.png';
 import FeedBackInfo from '../FeedBackInfo/FeedBackInfo';
 
-// const customerInfo = [
-//     {
-//         name: 'Nash Patrik',
-//         designation: 'CEO manpol',
-//         img: customer1,
-//         comments:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
-//     },
-//     {
-//         name: 'Miriam Barron',
-//         designation: 'CEO manpol',
-//         img: customer2,
-//         comments:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
-//     },
-//     {
-//         name: 'Bria  Maloni',
-//         designation: 'CEO manpol',
-//         img: customer3,
-//         comments:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat '
-//     },
-// ]
 
 
 const FeedBack = () => {
@@ -36,7 +13,8 @@ const FeedBack = () => {
                 setComments(data)
         })
     }, [])
-    console.log(comments)
+
+
     return (
 
         <div className="container my-5 py-5">

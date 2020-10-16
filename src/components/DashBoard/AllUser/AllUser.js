@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
   
 // you can use React.forwardRef to pass the ref too
@@ -15,10 +15,30 @@ const Select = React.forwardRef(({ label }, ref) => (
 
 const AllUser = ({ service }) => {
 
+  const [status,setStatus] = useState('pending')
+
     const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = data => console.log(data);
 
-    return (
+// this handler is used for select the status value
+  const handleChange = (e) => {
+    const stat = e.target.value;
+    console.log(stat);
+    setStatus(stat);
+
+  }
+  // This handler is used for get the id and for this id get the value from database 
+  const onClick = (id) => {
+    fetch(`https://infinite-fjord-10812.herokuapp.com/status/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({status: status})
+    })
+  }
+  return (
+      //  all user table
         <tbody>
             <tr>
                 <td>{service.name}</td>
@@ -26,8 +46,8 @@ const AllUser = ({ service }) => {
                 <td>{service.title}</td>
                 <td>{service.description}</td>
                 <td>
-                    <form onChange={handleSubmit(onSubmit)}>
-                    <Select ref={register({ required: true })} />
+                    <form onSubmit={handleSubmit(onSubmit)} onClick={()=> onClick(service._id)} onChange={handleChange} >
+                    <Select  ref={register({ required: true })} />
                     {errors.exampleRequired && <span>This field is required</span>}
                     </form>
                 </td>

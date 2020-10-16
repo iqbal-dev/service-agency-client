@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const AddAdmin = () => {
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit,errors } = useForm();
     const onSubmit = data => {
         fetch('https://infinite-fjord-10812.herokuapp.com/addAdmin', {
             method: 'POST',

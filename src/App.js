@@ -12,6 +12,9 @@ import Login from './components/Login/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import ServiceList from './components/DashBoard/ServiceList/ServiceList';
 import NoMatch from './components/Nomatch/NoMatch';
+import Portfolio from './components/Postfolio/Portfolio';
+import Contact from './components/Contact/Contact';
+import Team from './components/Team/Team';
 
 export const UserContext = createContext();
 
@@ -40,6 +43,15 @@ function App() {
           </PrivateRoute>
           <Route path="/servicelist">
             <ServiceList></ServiceList>
+          </Route>
+          <Route path="/portfolio">
+            <Portfolio></Portfolio>
+          </Route>
+          <Route path="/contact">
+            <Contact></Contact>
+          </Route>
+          <Route path="/team">
+            <Team></Team>
           </Route>
           <Route path="/*">
             <NoMatch></NoMatch>

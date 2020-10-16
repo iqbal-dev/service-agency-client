@@ -5,7 +5,7 @@ const HeaderBottom = () => {
     return (
             <div className="row container justify-content-between" style={{margin:'150px auto 150px auto'}}>
                 <div className="col-md-2">
-                   <Link><img className="img-fluid" style={{height:'60px'}} src={require('../../../../images/logos/airbnb.png')} alt=""/></Link> 
+                <Link><img className="img-fluid" style={{height:'60px'}} src={require('../../../../images/logos/airbnb.png')} alt=""/></Link> 
                 </div>
                 <div className="col-md-2">
                 <Link><img className="img-fluid" style={{ height: '60px' }} src={require('../../../../images/logos/google.png')} alt="" /></Link>
