@@ -41,7 +41,7 @@ const Addservices = () => {
                         <div className="col-md-6 bg-white">
                                     <div>
                                         <label for="img">Select image:</label>
-                                        <input onChange={handleChange} style={{border: '1px solid lightgray',}} type="file"ref={register({ required: true })} id="img" name="img" accept="image/*"/>
+                                        <input onChange={handleChange} style={{border: '1px solid lightgray',}} type="file" ref={register({ required: true })} id="img" name="img" accept="image/*"/>
                                         {errors.exampleRequired && <span>This field is required</span>}
                                     </div>
                 </div>
