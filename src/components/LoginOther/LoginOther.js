@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
 import * as firebase from "firebase/app";
-import firebaseConfig from "../Login/firebaseConfig";
 import "firebase/auth";
+import React, { useContext } from "react";
 import { useHistory, useLocation } from "react-router";
 import { UserContext } from "../../App";
+import firebaseConfig from "../Login/firebaseConfig";
 const LoginOther = () => {
   const history = useHistory();
   const location = useLocation();
@@ -27,7 +27,7 @@ const LoginOther = () => {
           email: email,
           img: photoURL,
         };
-        localStorage.setItem("email", newUser.email);
+        sessionStorage.setItem("email", newUser.email);
         setUser(newUser);
         history.replace(from);
         console.log(newUser, result.user);

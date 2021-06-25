@@ -1,16 +1,16 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartArrowDown,
-  faList,
   faCommentDots,
+  faList,
 } from "@fortawesome/free-solid-svg-icons";
-import "./Customer.css";
-import ServiceList from "../ServiceList/ServiceList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "../../../App";
 import Order from "../Order/Order";
 import Review from "../Review/Review";
-import { UserContext } from "../../../App";
+import ServiceList from "../ServiceList/ServiceList";
+import "./Customer.css";
 
 const Customer = () => {
   const [user] = useContext(UserContext);
@@ -102,8 +102,8 @@ const Customer = () => {
 
         {/* main part */}
 
-        <div className="col-md-10 p-0">
-          <div style={{ background: "#F4F7FC" }}>
+        <div className="col-md-10 p-5">
+          <div style={{ background: "rgb(169 238 220)" }}>
             {customer.makeOrder && <Order></Order>}
             {customer.serviceList && <ServiceList></ServiceList>}
             {customer.review && <Review></Review>}

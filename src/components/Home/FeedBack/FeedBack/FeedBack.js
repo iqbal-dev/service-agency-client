@@ -5,7 +5,7 @@ const FeedBack = () => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    fetch("https://infinite-fjord-10812.herokuapp.com/commentsDetails")
+    fetch("http://localhost:5000/commentsDetails")
       .then((res) => res.json())
       .then((data) => {
         setComments(data);

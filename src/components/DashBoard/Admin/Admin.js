@@ -1,35 +1,45 @@
+import { faList, faPlus, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faList, faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import "./Admin.css";
-import AllUser from "../AllUser/AllUser";
-import Addservices from "../AddServices/Addservices";
-import AddAdmin from "../AddAdmin/AddAdmin";
 import { UserContext } from "../../../App";
+import AddAdmin from "../AddAdmin/AddAdmin";
+import AddMentor from "../AddMentor/AddMentor";
+import Addservices from "../AddServices/Addservices";
+import AllUser from "../AllUser/AllUser";
+import "./Admin.css";
 
 const Admin = () => {
   const [serviceList, setServiceList] = useState([]);
+  const [fetchStatus, setFetchStatus] = useState(false);
   const [user] = useContext(UserContext);
   useEffect(() => {
-    fetch("https://infinite-fjord-10812.herokuapp.com/allUser")
+    fetch("http://localhost:5000/allUser")
       .then((res) => res.json())
       .then((data) => {
         setServiceList(data);
       });
-  }, []);
+  }, [serviceList.length, fetchStatus]);
 
+  const handleDelete = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/delete/${id}`, {
+      method: "DELETE",
+    }).then((res) => setFetchStatus(!fetchStatus));
+  };
   // which one is display service,add service or add admin
   const [adminPanel, setAdminPanel] = useState({
     services: true,
     addServices: false,
     admin: false,
+    mentor: false,
   });
   const service = () => {
     setAdminPanel({
       services: true,
       addServices: false,
       admin: false,
+      mentor: false,
     });
   };
   const addService = () => {
@@ -37,6 +47,7 @@ const Admin = () => {
       services: false,
       addServices: true,
       admin: false,
+      mentor: false,
     });
   };
   const addAdmin = () => {
@@ -44,6 +55,15 @@ const Admin = () => {
       services: false,
       addServices: false,
       admin: true,
+      mentor: false,
+    });
+  };
+  const addMentors = () => {
+    setAdminPanel({
+      services: false,
+      addServices: false,
+      admin: false,
+      mentor: true,
     });
   };
   return (
@@ -102,13 +122,18 @@ const Admin = () => {
                 <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Add Admin
               </li>
             </Link>
+            <Link onClick={addMentors}>
+              <li>
+                <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Add Mentor
+              </li>
+            </Link>
           </ul>
         </div>
 
         {/* main section */}
 
         <div className="col-md-10 p-0">
-          <div style={{ width: "100%", background: "#F4F7FC" }}>
+          <div style={{ width: "100%", background: "rgb(169 238 220)" }}>
             {adminPanel.services && (
               <>
                 <table>
@@ -119,16 +144,24 @@ const Admin = () => {
                       <th>Service</th>
                       <th>ProjectDetails</th>
                       <th>Status</th>
+                      <th>Delete User</th>
                     </tr>
                   </thead>
                   {serviceList.map((service, index) => (
-                    <AllUser service={service} key={index}></AllUser>
+                    <AllUser
+                      setFetchStatus={setFetchStatus}
+                      fetchStatus={fetchStatus}
+                      service={service}
+                      key={index}
+                      handleDelete={handleDelete}
+                    ></AllUser>
                   ))}
                 </table>
               </>
             )}
             {adminPanel.addServices && <Addservices></Addservices>}
             {adminPanel.admin && <AddAdmin></AddAdmin>}
+            {adminPanel.mentor && <AddMentor></AddMentor>}
           </div>
         </div>
       </div>

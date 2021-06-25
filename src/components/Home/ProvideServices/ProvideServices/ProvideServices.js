@@ -1,7 +1,7 @@
+import { Audio, useLoading } from "@agney/react-loading";
 import React, { useEffect, useState } from "react";
 import ServicesInfo from "../ServicesInfo/ServicesInfo";
 import "./ProvideService.css";
-import { useLoading, Audio } from "@agney/react-loading";
 
 const ProvideServices = () => {
   const { containerProps, indicatorEl } = useLoading({
@@ -11,7 +11,7 @@ const ProvideServices = () => {
   const [service, setService] = useState([]);
   const [loader, setLoader] = useState(true);
   useEffect(() => {
-    fetch("https://infinite-fjord-10812.herokuapp.com/service")
+    fetch("http://localhost:5000/service")
       .then((res) => res.json())
       .then((data) => {
         if (data) {

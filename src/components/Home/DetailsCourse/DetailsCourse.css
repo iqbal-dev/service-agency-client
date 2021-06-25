@@ -1,0 +1,37 @@
+.banner{
+    background-image: url(../../../images/logos/clement-helardot-95YRwf6CNw8-unsplash.jpg);
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 80%;
+    margin:40px  auto;
+    position: relative;
+    box-shadow: 0px 0px 8px 5px #1d1b1b;
+}
+.opacity{
+    position: absolute;
+    background-color: #0a112bd4;
+    height: 100%;
+    width: 100%;
+}
+.banner-button{
+    border: none;
+    padding: 15px 50px ;
+    font-size:20px !important;
+    font-weight:700;
+    background-color:#de324a;
+    color: white;
+    border-radius: 5px;
+    margin-top: 40px !important;
+}
+.details-container{
+    width: 80%;
+    margin: 0 auto;
+}
+.content-right{
+    border: 1px solid #d6d6d6;
+    border-radius: 5px;
+    padding: 30px;
+    width: 100%;
+}

@@ -1,15 +1,15 @@
-table tr th{
-    background-color: lightgray;
-    padding: 10px;
+table tr th {
+  background-color: lightgray;
+  padding: 10px;
 }
-table tr td{
-    padding: 10px;
+table tr td {
+  padding: 10px;
 }
-table{
-    width: 80%;
-    margin: 0 auto;
-    background-color:white;
+table {
+  width: 100%;
+  margin: 0 auto;
+  background: #f4f7fc;
 }
-table tr{
-    border-radius: 5px;
+table tr {
+  border-radius: 5px;
 }

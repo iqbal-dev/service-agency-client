@@ -13,7 +13,7 @@ const Review = () => {
       designation: data.designation,
       message: data.description,
     };
-    fetch("https://infinite-fjord-10812.herokuapp.com/comments", {
+    fetch("http://localhost:5000/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const Review = () => {
 
         <input
           name="designation"
-          placeholder="Company's Designation"
+          placeholder=" Designation"
           ref={register({ required: true })}
         />
         {errors.exampleRequired && (

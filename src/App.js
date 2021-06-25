@@ -1,17 +1,18 @@
 import React, { createContext, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./components/Home/Home/Home";
+import Contact from "./components/Contact/Contact";
 import DashBoard from "./components/DashBoard/Dashboard/DashBoard";
-import Login from "./components/Login/Login";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import ServiceList from "./components/DashBoard/ServiceList/ServiceList";
+import DetailsCourse from "./components/Home/DetailsCourse/DetailsCourse";
+import Home from "./components/Home/Home/Home";
+import OurTeam from "./components/Home/OurTeam/OurTeam";
+import PaymentProcess from "./components/Home/PaymentProcess/PaymentProcess";
+import Login from "./components/Login/Login";
 import NoMatch from "./components/Nomatch/NoMatch";
 import Portfolio from "./components/Postfolio/Portfolio";
-import Contact from "./components/Contact/Contact";
-import Team from "./components/Team/Team";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import SignUp from "./components/SignUp/SignUp";
-
 export const UserContext = createContext();
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     title: "",
     id: "",
   });
+
   return (
     <UserContext.Provider value={[user, setUser]}>
       <Router>
@@ -50,11 +52,20 @@ function App() {
           <Route path="/portfolio">
             <Portfolio></Portfolio>
           </Route>
+          <Route path="/checkout">
+            <PaymentProcess />
+          </Route>
           <Route path="/contact">
             <Contact></Contact>
           </Route>
+          {/* <Route path="/payment">
+            <PaymentProcess/>
+          </Route> */}
           <Route path="/team">
-            <Team></Team>
+            <OurTeam></OurTeam>
+          </Route>
+          <Route path="/course-details">
+            <DetailsCourse />
           </Route>
           <Route path="/*">
             <NoMatch></NoMatch>

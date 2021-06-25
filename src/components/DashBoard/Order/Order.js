@@ -2,7 +2,10 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../../../App";
-import { Spinner } from "react-bootstrap";
+import PaymentProcess from "../../Home/PaymentProcess/PaymentProcess";
+
+const stripeKey =
+  "pk_test_51J5AmlET3eIsEMKyAecl4TYP6UnlyIqmDdqviMv8JjgngzooADEDrbhC1xUPP8AZqSzjkshNKa98zSjuzu2AQ27v00ULK7WQzA";
 const Order = () => {
   const history = useHistory();
   const [order, setOrder] = useState(false);
@@ -10,26 +13,30 @@ const Order = () => {
   console.log(user);
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
-    setOrder(true);
-    const customerDetails = {
-      ...user,
-      message: data.message,
-      status: "pending",
-    };
-    fetch("https://infinite-fjord-10812.herokuapp.com/customerDetails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(customerDetails),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result) {
-          setOrder(false);
-          alert("order success");
-        }
-      });
+    // console.log(data);
+    // setOrder(true);
+    // const customerDetails = {
+    //   name: user.name,
+    //   email: user.email,
+    //   courseImage: user.courseImg,
+    //   title: user.title,
+    //   description: user.description,
+    //   status: "pending",
+    // };
+    // fetch("http://localhost:5000/customerDetails", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(customerDetails),
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     if (result) {
+    //       setOrder(false);
+    //       // alert(result.message);
+    //     }
+    //   });
   };
 
   const handleButton = () => {
@@ -37,50 +44,27 @@ const Order = () => {
   };
   return (
     <div>
-      {order ? (
-        <Spinner animation="border" className="text-center" />
-      ) : (
+      <div>
         <form
+          className="col-md-6"
           onSubmit={handleSubmit(onSubmit)}
-          style={{ width: "50%", marginLeft: "50px", paddingTop: "50px" }}
+          style={{ paddingTop: "50px", paddingLeft: "50px" }}
         >
-          <input name="name" value={user.name} ref={register} />
-
-          <input
-            name="email"
-            value={user.email}
-            ref={register({ required: true })}
-          />
+          <label htmlFor="course">Course</label>
+          <input id="course" name="course" value={user.title} />
           {errors.exampleRequired && (
             <span style={{ color: "red" }}>This field is required</span>
           )}
-
-          <input
-            name="course"
-            value={user.title}
-            ref={register({ required: true })}
-          />
+          <label htmlFor="mentorName">Mentor Name:</label>
+          <input id="mentorName" name="mentorName" value={user.mentorName} />
           {errors.exampleRequired && (
             <span style={{ color: "red" }}>This field is required</span>
           )}
-
-          <textarea
-            name="message"
-            placeholder="Message"
-            ref={register}
-            id=""
-            cols="30"
-            rows="10"
-          ></textarea>
-          <button
-            onClick={handleButton}
-            className="btn btn-primary"
-            type="submit"
-          >
-            Submit
-          </button>
         </form>
-      )}
+        <div className="col-md-6" style={{ paddingTop: "50px" }}>
+          <PaymentProcess />
+        </div>
+      </div>
     </div>
   );
 };

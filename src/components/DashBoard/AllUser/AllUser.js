@@ -1,46 +1,23 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Dropdown } from "react-bootstrap";
 
 // you can use React.forwardRef to pass the ref too
-const Select = React.forwardRef(({ label }, ref) => (
-  <>
-    <label>{label}</label>
-    <select name="status" ref={ref}>
-      <option value="pending" className="text-primary">
-        pending
-      </option>
-      <option value="on going" className="text-warning">
-        on going
-      </option>
-      <option value="Done">Done</option>
-    </select>
-  </>
-));
 
-const AllUser = ({ service }) => {
-  const [status, setStatus] = useState("pending");
+const AllUser = ({ service, setFetchStatus, fetchStatus, handleDelete }) => {
+  // const [status, setStatus] = useState("");
 
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
-
-  // this handler is used for select the status value
-  const handleChange = (e) => {
-    const stat = e.target.value;
-    console.log(stat);
-    setStatus(stat);
-  };
-  // This handler is used for get the id and for this id get the value from database
-  const onClick = (id) => {
-    console.log(id);
-    fetch(`https://infinite-fjord-10812.herokuapp.com/status/${id}`, {
+  const handleClick = (id, status) => {
+    setFetchStatus(!fetchStatus);
+    console.log(id, status);
+    fetch(`http://localhost:5000/status/${id}`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify({ status: status }),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    });
   };
   return (
     //  all user table
@@ -51,14 +28,45 @@ const AllUser = ({ service }) => {
         <td>{service.title}</td>
         <td>{service.description}</td>
         <td>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            onClick={() => onClick(service._id)}
-            onChange={handleChange}
-          >
-            <Select ref={register({ required: true })} />
-            {errors.exampleRequired && <span>This field is required</span>}
-          </form>
+          <Dropdown>
+            <Dropdown.Toggle
+              variant={
+                (service.status === "Done" && "success") ||
+                (service.status === "pending" && "danger") ||
+                (service.status === "on going" && "warning")
+              }
+              id="dropdown-basic"
+              style={{ width: "124px" }}
+            >
+              {service.status}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={(e) => handleClick(service._id, "Done")}>
+                Done
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => handleClick(service._id, "pending")}
+              >
+                pending
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => handleClick(service._id, "on going")}
+              >
+                on going
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </td>
+        <td
+          style={{ cursor: "pointer" }}
+          onClick={() => handleDelete(service._id)}
+        >
+          <FontAwesomeIcon
+            variant="danger"
+            className="text-danger font-bold"
+            icon={faTrashAlt}
+          />
         </td>
       </tr>
     </tbody>

@@ -6,8 +6,7 @@ const ServiceList = () => {
 
   useEffect(() => {
     fetch(
-      "https://infinite-fjord-10812.herokuapp.com/orderlist?email=" +
-        localStorage.getItem("email")
+      "http://localhost:5000/orderlist?email=" + sessionStorage.getItem("email")
     )
       .then((res) => res.json())
       .then((data) => {
