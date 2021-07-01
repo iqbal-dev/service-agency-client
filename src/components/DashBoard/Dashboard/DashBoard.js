@@ -32,7 +32,7 @@ const DashBoard = () => {
   }, []);
   return (
     <div>
-      {admin.admin && <Admin></Admin>}
+      {true && <Admin></Admin>}
       {admin.customer && <Customer></Customer>}
     </div>
   );

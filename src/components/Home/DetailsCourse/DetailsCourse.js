@@ -36,7 +36,7 @@ const DetailsCourse = () => {
       .then((res) => setStudent(res.data));
   }, []);
   console.log("====================================");
-  console.log(student);
+  console.log(mentor);
   console.log("====================================");
   return (
     <div>

@@ -18,7 +18,13 @@ const ServiceList = () => {
   return (
     <div className="row ">
       {orderlist.map((service, index) => (
-        <div className="col-md-5" key={index}>
+        <div
+          className="col-md-5"
+          key={index}
+          style={{
+            display: service.muteStatus === "active" ? "none" : "inline",
+          }}
+        >
           <div className="serviceList-container p-5">
             <div className="row justify-content-between">
               <div className=" col-md-6">

@@ -22,6 +22,7 @@ const Addservices = () => {
     formData.append("duration", data.duration);
     formData.append("language", data.language);
     formData.append("courseOutline", data.courseOutline);
+    formData.append("date", data.date);
     formData.append("mentorName", name);
 
     fetch("http://localhost:5000/newService", {
@@ -83,8 +84,10 @@ const Addservices = () => {
           {errors.img && (
             <span style={{ color: "red" }}>This field is required</span>
           )}
+           <label htmlFor="duration">Course Duration:</label>
           <input
             type="time"
+            id="duration"
             name="duration"
             style={{ border: "1px solid lightgray" }}
             placeholder="Duration of course"
@@ -93,6 +96,7 @@ const Addservices = () => {
           {errors.price && (
             <span style={{ color: "red" }}>This field is required</span>
           )}
+
         </div>
       </div>
       {/* add service image upload */}
@@ -142,6 +146,17 @@ const Addservices = () => {
             rows="3"
           ></textarea>
           {errors.description && (
+            <span style={{ color: "red" }}>This field is required</span>
+          )}
+            <label htmlFor="date">Starting Date:</label>        
+          <input
+            type="date"
+            name="date"
+            style={{ border: "1px solid lightgray" }}
+            placeholder="Starting date"
+            ref={register({ required: true })}
+          />
+          {errors.price && (
             <span style={{ color: "red" }}>This field is required</span>
           )}
         </div>

@@ -15,7 +15,8 @@ const ServicesInfo = ({ service }) => {
     duration,
     language,
     price,
-    courseOutline
+    courseOutline,
+    startedDate
   ) => {
     const newUser = {
       id: id,
@@ -27,6 +28,7 @@ const ServicesInfo = ({ service }) => {
       language: language,
       price: price,
       courseOutline: courseOutline,
+      startedDate: startedDate,
     };
     setUser(newUser);
   };
@@ -49,7 +51,8 @@ const ServicesInfo = ({ service }) => {
               service.duration,
               service.language,
               service.price,
-              service.courseOutline
+              service.courseOutline,
+              service.date
             )
           }
         >

@@ -155,8 +155,12 @@ const PaymentProcess = () => {
           body: JSON.stringify({
             title: user.title,
             description: user.description,
+            startedDate: user.startedDate,
+            user: user.name,
+            image: user.img,
             ...billingDetails,
             status: "pending",
+            muteStatus: "inactive",
           }),
         })
           .then((res) => res.json())
@@ -166,7 +170,7 @@ const PaymentProcess = () => {
             }
           });
       }
-
+      console.log(user);
       const payload = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement(CardElement),

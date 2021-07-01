@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../../App";
 import AddAdmin from "../AddAdmin/AddAdmin";
 import AddMentor from "../AddMentor/AddMentor";
+import MentorList from "../AddMentor/MentorList";
 import Addservices from "../AddServices/Addservices";
+import AllServices from "../AllServices/AllServices";
 import AllUser from "../AllUser/AllUser";
+import Stat from "../Stat/Stat";
 import "./Admin.css";
 
 const Admin = () => {
@@ -33,39 +36,11 @@ const Admin = () => {
     addServices: false,
     admin: false,
     mentor: false,
+    mentorList: false,
+    allServices: false,
+    stat: false,
   });
-  const service = () => {
-    setAdminPanel({
-      services: true,
-      addServices: false,
-      admin: false,
-      mentor: false,
-    });
-  };
-  const addService = () => {
-    setAdminPanel({
-      services: false,
-      addServices: true,
-      admin: false,
-      mentor: false,
-    });
-  };
-  const addAdmin = () => {
-    setAdminPanel({
-      services: false,
-      addServices: false,
-      admin: true,
-      mentor: false,
-    });
-  };
-  const addMentors = () => {
-    setAdminPanel({
-      services: false,
-      addServices: false,
-      admin: false,
-      mentor: true,
-    });
-  };
+
   return (
     <div style={{ marginLeft: "50px" }}>
       {/* header portion */}
@@ -107,24 +82,117 @@ const Admin = () => {
       <div className="row " style={{ margin: "0 auto" }}>
         <div className="col-md-2">
           <ul>
-            <Link onClick={service}>
+            <Link
+              onClick={() =>
+                setAdminPanel({
+                  addServices: false,
+                  admin: false,
+                  mentor: false,
+                  services: true,
+                  allServices: false,
+                })
+              }
+            >
               <li>
-                <FontAwesomeIcon icon={faList}></FontAwesomeIcon> Service List
+                <FontAwesomeIcon icon={faList}></FontAwesomeIcon> Order List
               </li>
             </Link>
-            <Link onClick={addService}>
+            <Link
+              onClick={() =>
+                setAdminPanel({
+                  addServices: true,
+                  admin: false,
+                  mentor: false,
+                  services: false,
+                  allServices: false,
+                })
+              }
+            >
               <>
                 <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon> Add service
               </>
             </Link>
-            <Link onClick={addAdmin}>
+            <Link
+              onClick={() =>
+                setAdminPanel({
+                  addServices: false,
+                  admin: true,
+                  mentor: false,
+                  services: false,
+                  allServices: false,
+                })
+              }
+            >
               <li>
                 <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Add Admin
               </li>
             </Link>
-            <Link onClick={addMentors}>
+            <Link
+              onClick={() =>
+                setAdminPanel({
+                  addServices: false,
+                  admin: false,
+                  mentor: true,
+                  services: false,
+                  allServices: false,
+                })
+              }
+            >
               <li>
-                <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Add Mentor
+                <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Add
+                Instructor
+              </li>
+            </Link>{" "}
+            <Link
+              onClick={() =>
+                setAdminPanel({
+                  addServices: false,
+                  admin: false,
+                  mentor: false,
+                  services: false,
+                  mentorList: true,
+                  allServices: false,
+                })
+              }
+            >
+              <li>
+                <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> Instructor
+                List
+              </li>
+            </Link>
+            <Link
+              onClick={() =>
+                setAdminPanel({
+                  addServices: false,
+                  admin: false,
+                  mentor: false,
+                  services: false,
+                  mentorList: false,
+                  allServices: true,
+                })
+              }
+            >
+              <li>
+                <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> All
+                Services
+              </li>
+            </Link>
+            <Link
+              onClick={() =>
+                setAdminPanel({
+                  addServices: false,
+                  admin: false,
+                  mentor: false,
+                  services: false,
+                  mentorList: false,
+                  allServices: false,
+                  stat: true,
+                })
+              }
+            >
+              <li>
+                <FontAwesomeIcon icon={faUserPlus}></FontAwesomeIcon> All
+                Statistics
               </li>
             </Link>
           </ul>
@@ -144,6 +212,7 @@ const Admin = () => {
                       <th>Service</th>
                       <th>ProjectDetails</th>
                       <th>Status</th>
+                      <th>Mute Status</th>
                       <th>Delete User</th>
                     </tr>
                   </thead>
@@ -162,6 +231,9 @@ const Admin = () => {
             {adminPanel.addServices && <Addservices></Addservices>}
             {adminPanel.admin && <AddAdmin></AddAdmin>}
             {adminPanel.mentor && <AddMentor></AddMentor>}
+            {adminPanel.mentorList && <MentorList></MentorList>}
+            {adminPanel.allServices && <AllServices></AllServices>}
+            {adminPanel.stat && <Stat></Stat>}
           </div>
         </div>
       </div>

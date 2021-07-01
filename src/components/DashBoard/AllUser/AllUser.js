@@ -19,6 +19,17 @@ const AllUser = ({ service, setFetchStatus, fetchStatus, handleDelete }) => {
       body: JSON.stringify({ status: status }),
     });
   };
+  const handleMute = (id, status) => {
+    setFetchStatus(!fetchStatus);
+    console.log(id, status);
+    fetch(`http://localhost:5000/status/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({ muteStatus: status }),
+    });
+  };
   return (
     //  all user table
     <tbody>
@@ -26,7 +37,7 @@ const AllUser = ({ service, setFetchStatus, fetchStatus, handleDelete }) => {
         <td>{service.name}</td>
         <td>{service.email}</td>
         <td>{service.title}</td>
-        <td>{service.description}</td>
+        <td width="400px">{service.description}</td>
         <td>
           <Dropdown>
             <Dropdown.Toggle
@@ -54,6 +65,28 @@ const AllUser = ({ service, setFetchStatus, fetchStatus, handleDelete }) => {
                 onClick={() => handleClick(service._id, "on going")}
               >
                 on going
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </td>
+        <td>
+          <Dropdown>
+            <Dropdown.Toggle
+              variant={("active" && "success") || ("inactive" && "danger")}
+              id="dropdown-basic"
+              style={{ width: "124px" }}
+            >
+              {service.muteStatus}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item onClick={(e) => handleMute(service._id, "active")}>
+                Active
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => handleMute(service._id, "inactive")}
+              >
+                Inactive
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
